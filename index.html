@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamoudi Store</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Hamoudi Store</h1>
+
+<h2 id="cart">🛒 السلة: 0</h2>
+
+<div class="products" id="products">
+
+</div>
+
+<h2>🛒 محتويات السلة</h2>
+
+<ul id="cartItems"></ul>
+
+<h3 id="total">المجموع: $0</h3>
+
+<button onclick="clearCart()">
+    🧹 إفراغ السلة
+</button>
+
+
+<!-- زر إتمام الشراء -->
+<button id="checkoutBtn" onclick="openModal()" style="background: #27ae60; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-size: 1.2rem; cursor: pointer; font-weight: bold; margin-right: 10px;">
+    🚀 إتمام الشراء وتأكيد الطلب
+</button>
+
+<!-- النافذة المنبثقة لإدخال معلومات الزبون -->
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>📝 أدخل معلومات الشحن</h2>
+        <form id="orderForm" onsubmit="sendOrder(event)">
+            <label>الاسم الكامل:</label>
+            <input type="text" id="customerName" required placeholder="مثال: محمد علي">
+
+            <label>رقم الهاتف:</label>
+            <input type="tel" id="customerPhone" required placeholder="مثال: 07701234567">
+
+            <label>العنوان بالتفصيل:</label>
+            <input type="text" id="customerAddress" required placeholder="المحافظة - المنطقة - أقرب نقطة دالة">
+
+            <button type="submit">✅ تأكيد وإرسال عبر الواتساب</button>
+        </form>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

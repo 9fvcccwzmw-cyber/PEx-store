@@ -1,0 +1,271 @@
+/* إعدادات الخطوط والخلفية العامة للموقع */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    direction: rtl; /* لجعل المتجر يدعم اللغة العربية بشكل صحيح من اليمين لليسار */
+    text-align: center;
+}
+
+/* تنسيق العناوين الرئيسية */
+h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #34495e;
+    margin-top: 40px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* حاوية المنتجات (Flexbox) */
+.products {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* كارت المنتج المفرد */
+.product {
+    width: 280px;
+    background: white;
+    padding: 20px;
+    border-radius: 16px; /* زوايا أنعم */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* ظل خفيف واحترافي */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* حركة ناعمة عند التمرير */
+}
+
+/* تأثير عند تمرير الماوس فوق المنتج */
+.product:hover {
+    transform: translateY(-5px); /* يرتفع المنتج قليلاً للأعلى */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* يقوى الظل */
+}
+
+/* حاوية الصورة داخل كارت المنتج */
+.image-box {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fafafa;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.image-box img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.product:hover .image-box img {
+    transform: scale(1.05); /* تكبير الصورة قليلاً عند تمرير الماوس */
+}
+
+/* أسماء المنتجات وأسعارها */
+.product h2 {
+    font-size: 1.25rem;
+    margin: 10px 0;
+    border: none;
+    padding: 0;
+    color: #2c3e50;
+}
+
+.product p {
+    font-size: 1.1rem;
+    color: #27ae60; /* اللون الأخضر الجذاب للأسعار */
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+/* الأزرار العامة للمنتجات */
+.product button {
+    margin-top: auto;
+    width: 100%;
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.product button:hover {
+    background: #2980b9;
+}
+
+/* قائمة عناصر السلة */
+#cartItems {
+    max-width: 500px;
+    margin: 20px auto;
+    list-style: none;
+    padding: 0;
+}
+
+#cartItems li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    margin: 12px 0;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: right;
+}
+
+/* أزرار التحكم بالكمية داخل السلة */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quantity-controls button {
+    background: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.quantity-controls button:hover {
+    background: #d0d0d0;
+}
+
+/* زر الحذف المميز بالأحمر داخل السلة */
+.quantity-controls .delete-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.quantity-controls .delete-btn:hover {
+    background: #c0392b;
+}
+
+.quantity-controls span {
+    font-weight: bold;
+    min-width: 25px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* المجموع الكلي وعناصر التحكم بالسلة */
+#total {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-top: 20px;
+}
+
+/* زر إفراغ السلة */
+button[onclick="clearCart()"] {
+    background: #95a5a6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+    margin-bottom: 40px;
+}
+
+button[onclick="clearCart()"]:hover {
+    background: #7f8c8d;
+}
+
+/* تصميم النافذة الخلفية المبهمة */
+.modal {
+    display: none; /* مخفية بالبداية */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* خلفية سوداء شفافة */
+    align-items: center;
+    justify-content: center;
+}
+
+/* صندوق المحتوى الأبيض */
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    text-align: right;
+}
+
+/* زر الإغلاق X */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+.close-btn:hover {
+    color: #333;
+}
+
+/* تنسيق حقول الإدخال داخل الفورم */
+#orderForm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+#orderForm label {
+    font-weight: bold;
+    color: #2c3e50;
+}
+#orderForm input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+#orderForm button {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+#orderForm button:hover {
+    background: #219653;
+}
