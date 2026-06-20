@@ -22,7 +22,7 @@ const products = [
         id: 3,
         name: "Beats Studio Pro",
         price: 25000,
-        images: ["images/beats_studio_pro.jpg", "images/beats_studio_pro2.jpg"],
+        images: ["images/Beats_Studio_Pro.jpg", "images/Beats_Studio_Pro2.jpg"],
         description: "High-performance wireless headphones with active noise cancellation"
     },
 
