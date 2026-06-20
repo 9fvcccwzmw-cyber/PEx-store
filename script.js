@@ -22,10 +22,9 @@ const products = [
         id: 3,
         name: "Beats Studio Pro",
         price: 25000,
-        images: ["images/Beats_Studio_Pro.jpg", "images/Beats_Studio_Pro2.jpg"],
+        images: ["images/beats_studio_pro.jpg", "images/beats_studio_pro2.jpg"],
         description: "High-performance wireless headphones with active noise cancellation"
     },
-
     {
         id: 4, // تأكد من إعطاء رقم مميز وغير مكرر للمنتج الجديد
         name: "Razer Kraken X Standard Edition", // اسم المنتج الذي سيظهر للزبون
