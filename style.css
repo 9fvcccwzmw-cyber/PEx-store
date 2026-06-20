@@ -1,271 +1,737 @@
-/* إعدادات الخطوط والخلفية العامة للموقع */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f9;
-    color: #333;
+/* --- 1. الإعدادات الأساسية العامة للموقع --- */
+* {
+    box-sizing: border-box;
     margin: 0;
-    padding: 20px;
-    direction: rtl; /* لجعل المتجر يدعم اللغة العربية بشكل صحيح من اليمين لليسار */
-    text-align: center;
-}
-
-/* تنسيق العناوين الرئيسية */
-h1 {
-    color: #2c3e50;
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-h2 {
-    color: #34495e;
-    margin-top: 40px;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
-    display: inline-block;
-}
-
-/* حاوية المنتجات (Flexbox) */
-.products {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    gap: 25px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-/* كارت المنتج المفرد */
-.product {
-    width: 280px;
-    background: white;
-    padding: 20px;
-    border-radius: 16px; /* زوايا أنعم */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* ظل خفيف واحترافي */
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* حركة ناعمة عند التمرير */
-}
-
-/* تأثير عند تمرير الماوس فوق المنتج */
-.product:hover {
-    transform: translateY(-5px); /* يرتفع المنتج قليلاً للأعلى */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* يقوى الظل */
-}
-
-/* حاوية الصورة داخل كارت المنتج */
-.image-box {
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fafafa;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 15px;
-}
-
-.image-box img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-}
-
-.product:hover .image-box img {
-    transform: scale(1.05); /* تكبير الصورة قليلاً عند تمرير الماوس */
-}
-
-/* أسماء المنتجات وأسعارها */
-.product h2 {
-    font-size: 1.25rem;
-    margin: 10px 0;
-    border: none;
     padding: 0;
-    color: #2c3e50;
+    font-family: 'Cairo', sans-serif;
 }
 
-.product p {
-    font-size: 1.1rem;
-    color: #27ae60; /* اللون الأخضر الجذاب للأسعار */
-    font-weight: bold;
-    margin-top: 5px;
-    margin-bottom: 20px;
+body {
+    /* تدرج لوني فخم وناعم ينتقل من البنفسجي الهادئ جداً إلى الرمادي المزرق النظيف */
+    background-image: url('images/bg.jpg'); 
+    
+    /* جعل الصورة تغطي كامل الشاشة بدون تكرار وتتحرك بسلاسة */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* تثبيت الخلفية أثناء التمرير يعطي تأثير عمق فخم جداً */
+    
+    color: #1e293b;
+    direction: rtl;
+    text-align: right;
+    padding-bottom: 50px;
 }
 
-/* الأزرار العامة للمنتجات */
-.product button {
-    margin-top: auto;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- 2. شريط التنقل العلوي Navbar المطور --- */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 15px 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4f46e5;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* تصميم خانة البحث الاحترافية */
+.search-container {
+    flex: 1;
+    max-width: 500px;
+}
+
+.search-container input {
     width: 100%;
-    background: #3498db;
+    padding: 10px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #f8fafc;
+}
+
+.search-container input:focus {
+    border-color: #46e5d0;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+.nav-cart {
+    background-color: #f1f5f9;
+    padding: 8px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    position: relative;
+    white-space: nowrap;
+}
+
+.nav-cart:hover {
+    background-color: #e2e8f0;
+}
+
+.badge {
+    background-color: #ef4444;
     color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 1rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+/* --- 3. البانر الترحيبي مع تصميم نص الخصم الاحترافي --- */
+.hero-section {
+    background: linear-gradient(135deg, #2d2d33 0%, #2d2d31 100%);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+    margin-bottom: 40px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+
+.hero-section h1 { 
+    font-size: 2.3rem; 
+    margin-bottom: 10px; 
+    font-weight: 700; 
+}
+
+.hero-section p {
+    background: #10b981;
+    color: white; 
+    display: inline-block; 
+    padding: 6px 16px; 
+    border-radius: 8px; 
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* --- 4. العناوين والفواصل --- */
+.section-title { font-size: 1.7rem; color: #0f172a; margin-bottom: 25px; position: relative; display: inline-block; }
+.section-title::after { content: ''; position: absolute; bottom: -5px; right: 0; width: 50%; height: 4px; background-color: #4f46e5; border-radius: 2px; }
+.separator { border: 0; height: 1px; background: #e2e8f0; margin: 50px 0; }
+
+/* --- 5. حاوية وكروت المنتجات --- */
+.products { 
+    display: flex; 
+    justify-content: center; 
+    gap: 25px; 
+    flex-wrap: wrap; 
+}
+
+.product {
+
+    background: rgba(255, 255, 255, 0.85); /* جعل الكارت أبيض شبه شفاف */
+    backdrop-filter: blur(8px);
+    width: 270px; 
+    background: #ffffff; /* لون الكارت أبيض ناصع ليتباين مع الخلفية الناعمة */
+    padding: 20px; 
+    border-radius: 20px;
+    /* ظل ناعم وضبابي يعطي إيحاء بالعمق */
+    box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05); 
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between; 
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease !important;
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.product:hover {
+    transform: translateY(-12px) scale(1.02) !important;
+    /* الظل يصبح أقوى وأجمل عند تمرير الماوس فوق المنتج */
+    box-shadow: 0 20px 30px rgba(79, 70, 229, 0.15) !important; 
+    border-color: #4f46e5;
+}
+/* توزيع توقيت ظهور الكروت لتبدو كشلال (Stagger Effect) عند فتح الصفحة */
+.product:nth-child(1) { animation-delay: 0.1s; }
+.product:nth-child(2) { animation-delay: 0.2s; }
+.product:nth-child(3) { animation-delay: 0.3s; }
+
+.image-box { 
+    height: 180px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: #f8fafc; 
+    border-radius: 14px; 
+    overflow: hidden; 
+    margin-bottom: 15px; 
+}
+
+.image-box img { 
+    max-width: 85%; 
+    max-height: 85%; 
+    object-fit: contain; 
+    transition: transform 0.4s ease; 
+}
+
+.product:hover .image-box img { 
+    transform: scale(1.05); 
+}
+
+.product h2 { 
+    font-size: 1.15rem; 
+    font-weight: 600; 
+    color: #1e293b; 
+    margin: 10px 0 5px 0; 
+    
+    /* حجز مساحة سطرين للعنوان لضمان المحاذاة حتى لو كان الاسم قصيراً أو طويلاً */
+    min-height: 54px;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product-desc {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin: 5px 0 15px 0;
+    line-height: 1.5;
+    padding: 0 5px;
+}
+
+.product .price { 
+    font-size: 1.2rem; 
+    color: #10b981; 
+    font-weight: 700; 
+    margin-top: auto; /* يدفع السعر والزر ليلتصقا بأسفل الكارت دائماً */
+    margin-bottom: 15px; 
+}
+
+.product button { 
+    width: 100%; 
+    background: #4f46e5; 
+    color: white; 
+    border: none; 
+    padding: 12px; 
+    border-radius: 12px; 
+    font-size: 1rem; 
+    font-weight: 600; 
+    cursor: pointer; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.product button:hover { 
+    background: #4338ca !important; 
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+    letter-spacing: 0.5px;
+}
+
+/* --- 6. تنسيقات نافذة تفاصيل المنتج المنبثقة --- */
+#detailProductDesc {
+    font-size: 1.1rem; 
+    font-weight: 600; 
+    color: #1e293b; 
+    line-height: 1.8; 
+    background: #f8fafc; 
+    padding: 15px; 
+    border-radius: 12px; 
+    border-right: 4px solid #4f46e5; 
+    white-space: pre-line; 
+}
+
+.gallery-section div {
+    background: transparent !important; 
+    height: auto !important; 
+}
+
+#mainDetailImage {
+    border-radius: 14px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06); 
+}
+
+/* --- 7. تصميم صفحة السلة الكاملة المستقلة الحديثة --- */
+.cart-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f8fafc; 
+    z-index: 999;
+    overflow-y: auto;
+    padding: 40px 20px;
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.cart-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 15px;
+}
+
+.cart-header h1 {
+    font-size: 1.8rem;
+    color: #1e293b;
+}
+
+.back-to-shop {
+    background: #fff;
+    color: #4f46e5;
+    border: 2px solid #4f46e5;
+    padding: 10px 20px;
+    border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: all 0.2s ease;
 }
 
-.product button:hover {
-    background: #2980b9;
+.back-to-shop:hover {
+    background: #4f46e5;
+    color: #fff;
 }
 
-/* قائمة عناصر السلة */
+.cart-content-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .cart-content-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+.cart-items-wrapper {
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
 #cartItems {
-    max-width: 500px;
-    margin: 20px auto;
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 #cartItems li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: white;
-    margin: 12px 0;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    text-align: right;
+    padding: 20px 0;
+    border-bottom: 1px solid #f1f5f9;
 }
 
-/* أزرار التحكم بالكمية داخل السلة */
+#cartItems li:last-child {
+    border-bottom: none;
+}
+
 .quantity-controls {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
+    background: #f1f5f9;
+    padding: 6px 12px;
+    border-radius: 30px;
 }
 
 .quantity-controls button {
-    background: #e0e0e0;
-    color: #333;
+    background: #fff;
     border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
     font-weight: bold;
-    font-size: 14px;
-    transition: background 0.2s;
-}
-
-.quantity-controls button:hover {
-    background: #d0d0d0;
-}
-
-/* زر الحذف المميز بالأحمر داخل السلة */
-.quantity-controls .delete-btn {
-    background: #e74c3c;
-    color: white;
-}
-
-.quantity-controls .delete-btn:hover {
-    background: #c0392b;
+    color: #4f46e5;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .quantity-controls span {
     font-weight: bold;
-    min-width: 25px;
-    text-align: center;
     font-size: 1.1rem;
+    min-width: 20px;
+    text-align: center;
 }
 
-/* المجموع الكلي وعناصر التحكم بالسلة */
-#total {
-    font-size: 1.5rem;
-    color: #2c3e50;
-    margin-top: 20px;
-}
-
-/* زر إفراغ السلة */
-button[onclick="clearCart()"] {
-    background: #95a5a6;
-    color: white;
+.clear-cart-btn {
+    background: transparent;
+    color: #ef4444;
     border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 1rem;
+    margin-top: 20px;
     cursor: pointer;
     font-weight: bold;
-    transition: background 0.2s;
-    margin-bottom: 40px;
 }
 
-button[onclick="clearCart()"]:hover {
-    background: #7f8c8d;
+.cart-summary-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+    border: 1px solid #f1f5f9;
 }
 
-/* تصميم النافذة الخلفية المبهمة */
-.modal {
-    display: none; /* مخفية بالبداية */
+.cart-summary-card h3 {
+    margin-top: 0;
+    color: #1e293b;
+    font-size: 1.3rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+    font-size: 1.05rem;
+    color: #64748b;
+}
+
+.total-row {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #1e3a8a;
+    margin-top: 25px;
+}
+
+.checkout-btn {
+    width: 100%;
+    background: #10b981; 
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 12px;
+    margin-top: 20px;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+    /* انميشن النبض المستمر للتنبيه */
+    animation: pulseGlow 2s infinite;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.checkout-btn:hover {
+    background: #059669 !important;
+}
+
+/* --- 8. نظام الإشعارات العائمة Toasts --- */
+.toast-container {
     position: fixed;
-    z-index: 1000;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1100;
+}
+
+.toast {
+    background-color: #1e293b;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* --- 9. النافذة المنبثقة الشحن Modal --- */
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); align-items: center; justify-content: center; }
+.modal-content { background-color: white; padding: 35px; border-radius: 24px; width: 90%; max-width: 450px; position: relative; animation: modalZoom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.close-btn { position: absolute; top: 20px; left: 20px; font-size: 24px; cursor: pointer; color: #94a3b8; }
+#orderForm { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+#orderForm input { padding: 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 1rem; }
+#orderForm input:focus { outline: none; border-color: #4f46e5; }
+#orderForm button { background: #10b981; color: white; border: none; padding: 14px; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; }
+
+/* --- 10. الأزرار والحركات التفاعلية النشطة (Ripple & Animations) --- */
+button, .delete-btn, .quantity-controls button {
+    transition: transform 0.1s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden; 
+}
+
+button:active, .delete-btn:active, .quantity-controls button:active {
+    transform: scale(0.92); 
+}
+
+@keyframes advancedShake {
+    0% { transform: scale(1); }
+    20% { transform: scale(1.15) rotate(-6deg); }
+    40% { transform: scale(1.15) rotate(6deg); }
+    60% { transform: scale(1.15) rotate(-4deg); }
+    80% { transform: scale(1.15) rotate(4deg); }
+    100% { transform: scale(1) rotate(0); }
+}
+
+.shake-animation {
+    animation: advancedShake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.ripple {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: rippleEffect 0.5s linear;
+    pointer-events: none;
+}
+
+@keyframes rippleEffect {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* انميشن ظهور المنتجات تدريجياً */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* حركة نبض زر تأكيد الطلب لتنبيه العميل */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* انميشن فتح نافذة تفاصيل المنتج */
+@keyframes modalZoom {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* --- ضبط النافذة لتكون متجاوبة وقابلة للتمرير الذكي في الشاشات المختلفة --- */
+#productDetailsModal {
+    overflow-y: auto;
+    padding: 20px;
+}
+
+#productDetailsModal .modal-content {
+    max-height: 90vh; /* يمنع النافذة من تجاوز طول الشاشة */
+    overflow-y: auto; /* يفعل التمرير الداخلي المريح في حال كانت الشاشة صغيرة */
+    border-radius: 24px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* تحجيم صورة التفاصيل لمنع تضخمها ودفع الأزرار للأسفل */
+#mainDetailImage {
+    max-height: 200px !important; /* حجم متناسق وممتاز جداً للعرض */
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+}
+
+
+/* --- نافذة تكبير الصور الاحترافية (Zoom Modal) --- */
+.zoom-modal {
+    display: none; /* مخفية تلقائياً */
+    position: fixed;
+    z-index: 3000; /* أعلى من كل العناصر والنوافذ الأخرى لضمان البروز */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* خلفية سوداء شفافة */
+    background-color: rgba(15, 23, 42, 0.9); /* خلفية داكنة فخمة للتركيز على الصورة */
+    backdrop-filter: blur(8px); /* تأثير ضبابي مريح للعين */
     align-items: center;
     justify-content: center;
+    cursor: zoom-out; /* يوضح للمستخدم أن الضغط سيغلق الصورة */
 }
 
-/* صندوق المحتوى الأبيض */
-.modal-content {
-    background-color: white;
-    padding: 30px;
+/* تنسيق الصورة بداخل نافذة التكبير */
+.zoom-modal img {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
     border-radius: 16px;
-    width: 90%;
-    max-width: 450px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    position: relative;
-    text-align: right;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: zoomAnimation 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* تأثير ارتداد مرن عند التكبير */
 }
 
-/* زر الإغلاق X */
-.close-btn {
+/* زر إغلاق نافذة التكبير */
+.zoom-close-btn {
     position: absolute;
-    top: 15px;
-    left: 20px;
-    font-size: 28px;
+    top: 25px;
+    left: 25px;
+    color: #f1f5f9;
+    font-size: 35px;
     font-weight: bold;
-    color: #aaa;
     cursor: pointer;
-}
-.close-btn:hover {
-    color: #333;
+    transition: color 0.2s ease;
 }
 
-/* تنسيق حقول الإدخال داخل الفورم */
-#orderForm {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 20px;
+.zoom-close-btn:hover {
+    color: #ef4444; /* يتحول للأحمر عند تمرير الماوس */
 }
-#orderForm label {
-    font-weight: bold;
-    color: #2c3e50;
+
+/* تأثير الحركة عند فتح الصورة */
+@keyframes zoomAnimation {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
-#orderForm input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-family: inherit;
+
+/* تلميح بصري للمستخدم بأن الصورة في نافذة التفاصيل قابلة للضغط */
+#mainDetailImage {
+    cursor: zoom-in !important;
+    transition: transform 0.3s ease;
 }
-#orderForm button {
-    background: #27ae60;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 1.1rem;
+#mainDetailImage:hover {
+    transform: scale(1.02);
+}
+
+/* ==========================================
+   🛠️ التحديثات الذكية لحماية النوافذ وتكبير الصور
+   ========================================== */
+
+/* منع تضخم محتوى تفاصيل المنتج وجعل النافذة قابلة للتمرير الداخلي المريح */
+#productDetailsModal {
+    overflow-y: auto;
+    padding: 20px;
+}
+
+#productDetailsModal .modal-content {
+    max-height: 90vh; /* قفل طول النافذة بـ 90% من حجم شاشة الهاتف أو الكومبيوتر */
+    overflow-y: auto; /* السماح بالتمرير داخل النافذة إذا كان الكلام أو الوصف طويلاً */
+    border-radius: 24px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* تحجيم صورة العرض الكبيرة داخل التفاصيل لكي لا تدفع زر السلة لأسفل */
+#mainDetailImage {
+    max-height: 220px !important;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+    cursor: zoom-in !important; /* تلميح للمستخدم بإمكانية تكبير الصورة */
+    transition: transform 0.3s ease;
+}
+
+#mainDetailImage:hover {
+    transform: scale(1.02);
+}
+
+/* --- نافذة تكبير الصور الاحترافية (Zoom Modal / Lightbox) --- */
+.zoom-modal {
+    display: none; 
+    position: fixed;
+    z-index: 3000; /* أعلى من كل الطبقات لضمان البروز */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.9); /* خلفية معتمة فخمة للتركيز */
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out; /* تلميح للمستخدم بالضغط في أي مكان للخروج */
+}
+
+.zoom-modal img {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: zoomAnimation 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* أنيميشن مرن وسلس */
+}
+
+.zoom-close-btn {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    color: #f1f5f9;
+    font-size: 38px;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 10px;
-    transition: background 0.2s;
+    transition: color 0.2s ease;
 }
-#orderForm button:hover {
-    background: #219653;
+
+.zoom-close-btn:hover {
+    color: #ef4444;
+}
+
+@keyframes zoomAnimation {
+    from { transform: scale(0.75); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* --- تنسيق التوهج العائم المتناسق مع الخلفية الرصاصية --- */
+.mouse-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.35) 0%, rgba(79, 70, 229, 0.12) 40%, rgba(79, 70, 229, 0) 65%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    will-change: left, top;
+    transition: opacity 0.3s ease;
+}
+
+.product {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+}
+
+.product:hover {
+    border-color: rgba(79, 70, 229, 0.4) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
 }
